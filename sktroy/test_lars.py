@@ -6,14 +6,14 @@ from sktroy import lars
 class TestLars(unittest.TestCase):
     @staticmethod
     def _inner_test(self, X, y):
-        lars = lars.LARS()
-        lars.fit(X, y)
-        last_weights = lars.weights_histories[-1]
+        model = lars.LARS()
+        model.fit(X, y)
+        last_weights = model.weights_histories[-1]
         ols_weights = np.dot(
             np.linalg.pinv(np.dot(X.T, X)),
             np.dot(X.T, y)
         )
-        diff = lars.weights_histories[-1] - ols_weights
+        diff = model.weights_histories[-1] - ols_weights
         self.assertAlmostEqual(np.sum(diff), 0)
 
     def test_sign_change(self):
