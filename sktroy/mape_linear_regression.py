@@ -65,8 +65,8 @@ class MAPELinearRegression(object):
         for n, semi_grad in enumerate(semi_grads):
             # 假设x当前在x0 + dists[n-1]位置
             if n > 0:
-                # if grad - last_semi_grad > 0.0:
-                #     return x0 + dists[n-1]
+                if grad - last_semi_grad > 0.0:
+                    return x0 + dists[n-1]
                 if grad - last_semi_grad >= 0.0:
                     return x0 + dists[n-1] + MAPELinearRegression.EPSILON
             new_grad = grad - semi_grad - last_semi_grad

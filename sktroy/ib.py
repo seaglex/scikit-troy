@@ -1,0 +1,5 @@
+'''
+Tishy
+'''
+
+class InformationBottleneck(object):
